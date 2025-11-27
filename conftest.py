@@ -1,3 +1,4 @@
+import logging
 import pytest
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
@@ -5,6 +6,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import os
 import datetime
+
+# Esto silencia los logs de WebDriver Manager (WDM)
+logging.getLogger("WDM").setLevel(logging.ERROR)
 
 @pytest.fixture(scope="function")
 def driver(request):
@@ -21,9 +25,8 @@ def driver(request):
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.maximize_window()
     
-    yield driver # Aquí se ejecuta el test
+    yield driver # se ejecuta el test
     
-    # Teardown (Cerrar navegador)
     driver.quit()
 
 # Hook para capturar pantalla si falla el test

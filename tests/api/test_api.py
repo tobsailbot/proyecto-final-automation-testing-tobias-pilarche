@@ -47,17 +47,17 @@ def test_create_post():
     # 2. Validar contenido
     json_data = response.json()
     assert json_data["title"] == "Proyecto Final QA"
-    assert "id" in json_data # La API debe devolver un ID simulado (suele ser 101)
+    assert "id" in json_data
 
 def test_delete_post():
     """
     Caso 3: Eliminar un recurso (DELETE)
     Valida que devuelve status 200.
     """
-    # Intentamos borrar el post número 1
+    # borrar el post número 1
     endpoint = f"{BASE_URL}/posts/1"
     
     response = requests.delete(endpoint)
     
-    # JSONPlaceholder devuelve 200 OK en Delete (otras APIs devuelven 204)
+    # JSONPlaceholder devuelve 200 OK en Delete
     assert response.status_code == 200, f"Falló DELETE. Status: {response.status_code}"

@@ -22,7 +22,6 @@ def test_agregar_producto_al_carrito(driver):
     assert "1" == inventory.get_cart_badge_count()
 
 def test_navegar_al_carrito(driver):
-    # ... (Login previo) ...
     login = LoginPage(driver)
     login.open()
     login.login("standard_user", "secret_sauce")
